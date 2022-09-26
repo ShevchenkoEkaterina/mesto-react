@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Pen from '../images/Pen.svg';
 import api from '../utils/Api.js';
 import Card from './Card';
 
 function Main(props) {
 
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([ ]);
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([ ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo()
       .then((result) => {
         setUserName(result.name)
@@ -22,7 +22,7 @@ function Main(props) {
       });
   }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
       api.getInitialCards()
         .then((result) => {
           setCards(result)
@@ -52,7 +52,7 @@ function Main(props) {
       </section>
       <section>
         <ul className="elements">
-        {cards.map((card) => <Card key={card.id} card={card} onCardClick={props.onCardClick}/>)}
+        {cards.map((card) => <Card key={card._id} card={card} onCardClick={props.onCardClick}/>)}
         </ul>
       </section>
     </main>
