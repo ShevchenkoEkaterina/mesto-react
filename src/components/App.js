@@ -82,12 +82,18 @@ function App() {
         api.removeLike(card._id)
           .then((newCard) => {
              setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((error) => {
+          console.log(error);
         });
       } else {
         api.addLike(card._id)
           .then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
           })
+          .catch((error) => {
+            console.log(error);
+          });
     }
   };
 
