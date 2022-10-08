@@ -19,7 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([ ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo()
       .then((result) => {
         setCurrentUser(result)
@@ -50,6 +50,7 @@ function App() {
     .then((result) => {
       setCurrentUser(result.name, result.about);
       closeAllPopups();
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
@@ -61,6 +62,7 @@ function App() {
     .then((result) => {
       setCurrentUser(result.avatar);
       closeAllPopups();
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
@@ -133,7 +135,8 @@ function App() {
       <div className="page">
         <div className="page__container">
           <Header />
-          <Main onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
+          <Main onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleAddPlaceClick} 
+          onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
           <Footer />
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
