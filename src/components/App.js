@@ -48,9 +48,8 @@ function App() {
   function handleUpdateUser(data) {
     api.editUserInfo(data.name, data.about)
     .then((result) => {
-      setCurrentUser(result.name, result.about);
+      setCurrentUser(result);
       closeAllPopups();
-      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
@@ -60,9 +59,8 @@ function App() {
   function handleUpdateAvatar(data) {
     api.editAvatar(data.avatar)
     .then((result) => {
-      setCurrentUser(result.avatar);
+      setCurrentUser(result);
       closeAllPopups();
-      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
